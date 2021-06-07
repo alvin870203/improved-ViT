@@ -1,2 +1,7 @@
 # ignore .vscode/
 **/.vscode/
+
+# ignore *.webm in dataset
+data/**/*.webm
+# ignore *.jpg in dataset
+data/**/*.jpg
