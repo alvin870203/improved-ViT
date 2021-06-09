@@ -5,3 +5,5 @@
 data/**/*.webm
 # ignore *.jpg in dataset
 data/**/*.jpg
+# ignore *.avi in dataset
+LRCN_PyTorch/**/*.avi
