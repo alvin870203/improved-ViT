@@ -7,3 +7,7 @@ data/**/*.webm
 data/**/*.jpg
 # ignore *.avi in dataset
 LRCN_PyTorch/**/*.avi
+# ignore *.rar in dataset
+LRCN_PyTorch/**/*.rar
+# ignore *.zip in dataset
+LRCN_PyTorch/**/*.zip
