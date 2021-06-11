@@ -207,8 +207,9 @@ class TSNDataSet(data.Dataset):
                 if p < record.num_frames:
                     p += 1
 
-        process_data = self.transform(images)  # shape of images: [num_segments, PIL(W, H; C)]
-                                               # shape of process_data: [num_segments*C, W, H]
+        process_data = self.transform(images)  # shape of images: [num_segments, PIL(H, HW; C)]
+                                               # shape of process_data: [num_segments*C, W, W]d
+        process_data = process_data.view((-1, len(images[0].getbands())) + process_data.size()[-2:])
         return process_data, record.label
 
     def __len__(self):

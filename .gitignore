@@ -11,3 +11,6 @@ LRCN_PyTorch/**/*.avi
 LRCN_PyTorch/**/*.rar
 # ignore *.zip in dataset
 LRCN_PyTorch/**/*.zip
+
+# ignore *.pth in checkpoint
+**/*.pth

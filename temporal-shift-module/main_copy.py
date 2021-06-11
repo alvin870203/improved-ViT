@@ -11,7 +11,7 @@ import torch.backends.cudnn as cudnn
 import torch.optim
 from torch.nn.utils import clip_grad_norm_
 
-from ops.dataset import TSNDataSet
+from ops.dataset_copy import TSNDataSet
 from ops.models import TSN
 from ops.transforms import *
 from opts import parser
@@ -20,6 +20,8 @@ from ops.utils import AverageMeter, accuracy
 from ops.temporal_shift import make_temporal_pool
 
 from tensorboardX import SummaryWriter
+
+import matplotlib.pylab as plt
 
 best_prec1 = 0
 
@@ -147,7 +149,7 @@ def main():
                        train_augmentation,
                        Stack(roll=(args.arch in ['BNInception', 'InceptionV3'])),
                        ToTorchFormatTensor(div=(args.arch not in ['BNInception', 'InceptionV3'])),
-                       normalize,
+                    #    normalize,
                    ]), dense_sample=args.dense_sample),
         batch_size=args.batch_size, shuffle=True,
         num_workers=args.workers, pin_memory=True,
@@ -164,7 +166,7 @@ def main():
                        GroupCenterCrop(crop_size),
                        Stack(roll=(args.arch in ['BNInception', 'InceptionV3'])),
                        ToTorchFormatTensor(div=(args.arch not in ['BNInception', 'InceptionV3'])),
-                       normalize,
+                    #    normalize,
                    ]), dense_sample=args.dense_sample),
         batch_size=args.batch_size, shuffle=False,
         num_workers=args.workers, pin_memory=True)
@@ -189,9 +191,19 @@ def main():
     tf_writer = SummaryWriter(log_dir=os.path.join(args.root_log, args.store_name))
     
     
+    # model.train()
+    fig, axs = plt.subplots(args.batch_size, args.num_segments, figsize=(15, 8))
     for i, (input, target) in enumerate(train_loader):
         print(input.size(), target.size())
-    
+        for i in range(args.batch_size):
+            for j in range(args.num_segments):
+                # print((input[i][j]))
+                axs[i][j].imshow(((input[i][j]).permute(1, 2, 0).numpy()*255).astype(np.uint8))
+        break
+        # input_var = torch.autograd.Variable(input)
+        # output = model(input_var)
+    plt.show()
+
     # for epoch in range(args.start_epoch, args.epochs):
     #     adjust_learning_rate(optimizer, epoch, args.lr_type, args.lr_steps)
 
