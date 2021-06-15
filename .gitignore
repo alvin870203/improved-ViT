@@ -1,6 +1,9 @@
 # ignore .vscode/
 **/.vscode/
 
+**/__pycache__/**
+**/.ipynb_checkpoints/**
+
 # ignore *.webm in dataset
 data/**/*.webm
 # ignore *.jpg in dataset
@@ -14,3 +17,28 @@ LRCN_PyTorch/**/*.zip
 
 # ignore *.pth in checkpoint
 **/*.pth
+
+LRCN_PyTorch/__pycache__/config.cpython-37.pyc
+LRCN_PyTorch/__pycache__/LoadUCF101DataByTorch.cpython-37.pyc
+LRCN_PyTorch/__pycache__/model.cpython-37.pyc
+LRCN_PyTorch/.ipynb_checkpoints/LRCN_PyTorch-checkpoint.ipynb
+ViT-pytorch/checkpoint/ViT-B_16.npz
+ViT-pytorch/data/cifar-10-python.tar.gz
+ViT-pytorch/data/cifar-100-python.tar.gz
+ViT-pytorch/data/cifar-10-batches-py/batches.meta
+ViT-pytorch/data/cifar-10-batches-py/data_batch_1
+ViT-pytorch/data/cifar-10-batches-py/data_batch_2
+ViT-pytorch/data/cifar-10-batches-py/data_batch_3
+ViT-pytorch/data/cifar-10-batches-py/data_batch_4
+ViT-pytorch/data/cifar-10-batches-py/data_batch_5
+ViT-pytorch/data/cifar-10-batches-py/readme.html
+ViT-pytorch/data/cifar-10-batches-py/test_batch
+ViT-pytorch/data/cifar-100-python/file.txt~
+ViT-pytorch/data/cifar-100-python/meta
+ViT-pytorch/data/cifar-100-python/test
+ViT-pytorch/data/cifar-100-python/train
+ViT-pytorch/output/cifar100-100_500_checkpoint.bin
+ViT-pytorch/output/cifar100-100_500-nopretrain_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-lambda05_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-x-nopretrain_checkpoint.bin
