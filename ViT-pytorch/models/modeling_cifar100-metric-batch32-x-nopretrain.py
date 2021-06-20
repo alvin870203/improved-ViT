@@ -240,16 +240,12 @@ class Encoder(nn.Module):
 
     def forward(self, hidden_states):
         attn_weights = []
-        for idx_layer, layer_block in enumerate(self.layer):
+        for layer_block in self.layer:
             hidden_states, weights = layer_block(hidden_states)
             if self.vis:
                 attn_weights.append(weights)
-            # print(idx_layer)
-            if idx_layer == 8:
-                hidden_states_8 = hidden_states
-        # print(self.layer)
         encoded = self.encoder_norm(hidden_states)
-        return encoded, attn_weights, hidden_states_8
+        return encoded, attn_weights
 
 
 class Transformer(nn.Module):
@@ -260,8 +256,8 @@ class Transformer(nn.Module):
 
     def forward(self, input_ids):
         embedding_output = self.embeddings(input_ids)
-        encoded, attn_weights, hidden_states_8 = self.encoder(embedding_output)
-        return encoded, attn_weights, hidden_states_8
+        encoded, attn_weights = self.encoder(embedding_output)
+        return encoded, attn_weights
 
 
 class VisionTransformer(nn.Module):
@@ -275,24 +271,16 @@ class VisionTransformer(nn.Module):
         self.head = Linear(config.hidden_size, num_classes)
 
     def forward(self, x, labels=None):
-        x, attn_weights, x_8 = self.transformer(x)
+        x, attn_weights = self.transformer(x)
         logits = self.head(x[:, 0])
         # print(len(x), len(x[0]), len(x[0][0]), len(x[0][0][0]))
         # print(x.size())#, x[0], x[0][0], x[0][0][0])
         if labels is not None:
             classifier_loss_fct = CrossEntropyLoss()
-            # metric_loss_fct = losses.CrossBatchMemory(losses.TripletMarginLoss(margin=0.1), 768)
-            # metric_loss_fct = losses.CircleLoss()
-            # metric_loss_fct = losses.AngularLoss()
             metric_loss_fct = losses.TripletMarginLoss(margin=0.1)
-            # metric_loss_fct = losses.ContrastiveLoss()
             # print(logits.view(-1, self.num_classes).size(), labels.view(-1).size())
             loss = classifier_loss_fct(logits.view(-1, self.num_classes), labels.view(-1)) + \
-                   metric_loss_fct(x_8.mean(1), labels.view(-1))
-                #    metric_loss_fct(x.mean(1), labels.view(-1))
-                #    metric_loss_fct(x[:, 0], labels.view(-1))
-                #    metric_loss_fct(torch.max(x, 1)[0], labels.view(-1))
-                #    metric_loss_fct(x.mean(1), labels.view(-1))
+                   metric_loss_fct(x.mean(1), labels.view(-1))
 
             return loss
         else:

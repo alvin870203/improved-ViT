@@ -42,3 +42,16 @@ ViT-pytorch/output/cifar100-100_500-nopretrain_checkpoint.bin
 ViT-pytorch/output/cifar100-metric-batch32_checkpoint.bin
 ViT-pytorch/output/cifar100-metric-batch32-nopretrain-lambda05_checkpoint.bin
 ViT-pytorch/output/cifar100-metric-batch32-x-nopretrain_checkpoint.bin
+ViT-pytorch/output/cifar100-batch32-pretrain_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-accu-nopretrain_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-accu-nopretrain-max-triplet_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-headinput-angular_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-headinput-contrastive_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-headinput-triplet-05_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-margin05_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-max_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-max-contrastive_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-mean-circle_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-nopretrain-mean-crossbatch_checkpoint.bin
+ViT-pytorch/output/cifar100-metric-batch32-pretrain-mean-crossbatch_checkpoint.bin
+ViT-pytorch/output/test_checkpoint.bin

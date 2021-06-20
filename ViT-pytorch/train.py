@@ -260,7 +260,7 @@ def main():
                         help="Resolution size")
     parser.add_argument("--train_batch_size", default=512, type=int,
                         help="Total batch size for training.")
-    parser.add_argument("--eval_batch_size", default=64, type=int,  # default=512
+    parser.add_argument("--eval_batch_size", default=512, type=int,  # default=512, chamge to 64
                         help="Total batch size for eval.")
     parser.add_argument("--eval_every", default=100, type=int,
                         help="Run prediction on validation set every so many steps."
